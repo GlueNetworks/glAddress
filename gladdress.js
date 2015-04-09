@@ -1,5 +1,5 @@
 /*! 
-  glAddress v(0.0.4) 
+  glAddress v(0.0.5) 
   (c) 2013-2015
   https://gluenetworks.kilnhg.com/Code/Web-Development
   Release Date: 2015-04-09 
@@ -29,7 +29,7 @@ angular.module("glAddress").directive("glAddress", [ "$compile", "$timeout", fun
                 elementLabel = angular.element(templateLabel), element.append(elementLabel), angular.forEach(scope.address, function(v, k) {
                     v.input = angular.element(v.template), element.append($compile(v.input)(scope));
                 }), valueSet && scope.api.setValue(scope.api._data.value), scope.api._data.editable ? (element.addClass(classEdit), 
-                element.removeClass(classView), errorMsgCheck()) : scope.api.view();
+                element.removeClass(classView), errorMsgCheck()) : scope.api.view(), scope.api._data.disabled && scope.api.disable();
             }
             function setEditMode() {
                 elementLabel = angular.element(templateLabel), element.prepend(elementLabel), element.addClass(classEdit), 

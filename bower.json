@@ -1,6 +1,6 @@
 {
   "name": "glAddress",
-  "version": "0.0.4",
+  "version": "0.0.5",
   "dependencies": {
     "GlueJasmineMatchers": "GlueNetworks/GlueJasmineMatchers#0.0.2",
     "angular": "1.3.15",
@@ -20,6 +20,6 @@
   },
   "devDependencies": {},
   "meta": {
-    "changesetId": "b2a882c765e62fda0f078001a0abd9ff1ef0e8e3"
+    "changesetId": "458ca3c3757e9d6b2972c3c9c377a4344adbfb11"
   }
 }

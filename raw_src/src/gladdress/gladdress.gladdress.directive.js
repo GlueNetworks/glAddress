@@ -423,6 +423,9 @@ angular.module('glAddress').directive('glAddress', ["$compile", "$timeout", func
                 } else {
                     scope.api.view();
                 }
+                if(scope.api._data.disabled){
+                    scope.api.disable();
+                }
             }
 
             function setEditMode() {
