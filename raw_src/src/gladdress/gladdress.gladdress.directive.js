@@ -21,7 +21,9 @@ angular.module('glAddress').directive('glAddress', ["$compile", "$timeout", func
         },
         link: function (scope, element, attrs, controller) {
 
+            var elementLabel;
             var elementError;
+            var templateLabel = '<label class="gl-address-label">Address</label>';
             var templateError = '<p class="gl-address-error" data-ng-bind="api._data.error"></p>';
             var classEdit = "gl-edit";
             var classView = "gl-view";
@@ -405,6 +407,8 @@ angular.module('glAddress').directive('glAddress', ["$compile", "$timeout", func
             }
 
             function initFields() {
+                elementLabel = angular.element(templateLabel);
+                element.append(elementLabel);
                 angular.forEach(scope.address, function (v, k) {
                     v.input = angular.element(v.template);
                     element.append($compile(v.input)(scope));
@@ -422,6 +426,8 @@ angular.module('glAddress').directive('glAddress', ["$compile", "$timeout", func
             }
 
             function setEditMode() {
+                elementLabel = angular.element(templateLabel);
+                element.prepend(elementLabel);
                 element.addClass(classEdit);
                 element.removeClass(classView);
                 angular.forEach(scope.address, function (v, k) {
@@ -431,6 +437,7 @@ angular.module('glAddress').directive('glAddress', ["$compile", "$timeout", func
             }
 
             function setViewMode() {
+                elementLabel.remove();
                 element.addClass(classView);
                 element.removeClass(classEdit);
                 angular.forEach(scope.address, function (v, k) {

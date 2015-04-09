@@ -1,8 +1,8 @@
 /*! 
-  glAddress v(0.0.2) 
+  glAddress v(0.0.4) 
   (c) 2013-2015
   https://gluenetworks.kilnhg.com/Code/Web-Development
-  Release Date: 2015-04-08 
+  Release Date: 2015-04-09 
 */
 angular.module("glAddress", [ "glTextfield", "glMultiSelect" ]), /**
  * @ngdoc directive
@@ -26,18 +26,20 @@ angular.module("glAddress").directive("glAddress", [ "$compile", "$timeout", fun
         },
         link: function(scope, element, attrs, controller) {
             function initFields() {
-                angular.forEach(scope.address, function(v, k) {
+                elementLabel = angular.element(templateLabel), element.append(elementLabel), angular.forEach(scope.address, function(v, k) {
                     v.input = angular.element(v.template), element.append($compile(v.input)(scope));
                 }), valueSet && scope.api.setValue(scope.api._data.value), scope.api._data.editable ? (element.addClass(classEdit), 
                 element.removeClass(classView), errorMsgCheck()) : scope.api.view();
             }
             function setEditMode() {
-                element.addClass(classEdit), element.removeClass(classView), angular.forEach(scope.address, function(v, k) {
+                elementLabel = angular.element(templateLabel), element.prepend(elementLabel), element.addClass(classEdit), 
+                element.removeClass(classView), angular.forEach(scope.address, function(v, k) {
                     v.api.edit();
                 }), errorMsgCheck();
             }
             function setViewMode() {
-                element.addClass(classView), element.removeClass(classEdit), angular.forEach(scope.address, function(v, k) {
+                elementLabel.remove(), element.addClass(classView), element.removeClass(classEdit), 
+                angular.forEach(scope.address, function(v, k) {
                     v.api.view();
                 }), errorMsgCheck();
             }
@@ -68,7 +70,7 @@ angular.module("glAddress").directive("glAddress", [ "$compile", "$timeout", fun
                 }
                 scope.api._data.onChange(scope.api._data.value);
             }
-            var elementError, templateError = '<p class="gl-address-error" data-ng-bind="api._data.error"></p>', classEdit = "gl-edit", classView = "gl-view", countries = [ {
+            var elementLabel, elementError, templateLabel = '<label class="gl-address-label">Address</label>', templateError = '<p class="gl-address-error" data-ng-bind="api._data.error"></p>', classEdit = "gl-edit", classView = "gl-view", countries = [ {
                 value: "AF",
                 label: "AFGHANISTAN"
             }, {
